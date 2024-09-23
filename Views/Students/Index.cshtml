@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MVCTask1.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-info" asp-controller="Students" asp-action="Create">Create New</a>
+</p>
+@if(Model is not null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DOB)
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Id
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.DOB
+                    </td>
+                    <td>
+                        <a class="btn btn-success" asp-controller="Students" asp-action="Update" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-danger" asp-controller="Students" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">No Student Add yet</div>
+}
